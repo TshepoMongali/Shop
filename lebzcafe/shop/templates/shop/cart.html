@@ -1,0 +1,28 @@
+{% extends 'shop/base.html' %}
+{% block title %}Cart{% endblock %}
+{% block content %}
+<h2>Your Cart</h2>
+{% if cart_items %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Snack</th>
+            <th>Qty</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>R{{ item.product.price|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="/checkout/" class="btn btn-success">Proceed to Checkout</a>
+{% else %}
+<p>Your cart is empty.</p>
+{% endif %}
+{% endblock %}
